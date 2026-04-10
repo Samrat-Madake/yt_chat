@@ -8,4 +8,4 @@ def load_transcript(youtube_url: str):
         return docs
     except Exception as e:
         print(f"Error loading transcript: {e}")
-        return []
+        raise e

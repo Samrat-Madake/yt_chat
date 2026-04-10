@@ -22,9 +22,13 @@ def process_video(url):
         return True # Already processed
 
     with st.spinner("📥 Loading video transcript..."):
-        docs = load_transcript(url)
-        if not docs:
-            st.error("Failed to load transcript. Please check if the URL is valid and the video has subtitles.")
+        try:
+            docs = load_transcript(url)
+            if not docs:
+                st.error("Failed to load transcript. Please check if the URL is valid and the video has subtitles.")
+                return False
+        except Exception as e:
+            st.error(f"Failed to load transcript. Error details: {str(e)}")
             return False
 
     with st.spinner("⚙️ Chunking documents..."):
