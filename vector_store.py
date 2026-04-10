@@ -11,7 +11,7 @@ def create_vector_store(chunks, force_reload=False):
     )
 
     # create client
-    client = QdrantClient(path="./qdrant_db")
+    client = QdrantClient(location=":memory:")
     
     collections = [c.name for c in client.get_collections().collections]
     
