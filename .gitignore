@@ -1,0 +1,5 @@
+.env
+yt_chat_venv/
+__pycache__/
+qdrant_db/
+*.pyc

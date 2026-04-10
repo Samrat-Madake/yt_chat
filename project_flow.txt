@@ -1,0 +1,76 @@
+🔹 Step-by-step
+User opens your app (Streamlit UI)
+Enters a YouTube video link
+Clicks Process Video
+System processes the transcript (few seconds ⏳)
+User sees chat interface
+User asks questions like:
+"What is this video about?"
+"Explain main concepts"
+System responds with accurate answers from video
+
+System Flow
+
+Step 1: Input Handling
+Take YouTube URL from user
+Validate URL
+
+Step 2: Load Transcript
+
+Step 3: Text Preprocessing
+RecursiveCharacterTextSplitter
+Long transcript → split into chunks
+
+Sep 4: Embedding Generation
+Using:
+Sentence Transformers
+via HuggingFace
+
+Step 5: Store in Vector DB
+Using:Qdrant
+Stores:
+embeddings
+metadata (chunk text)
+
+Step 6: User Query Processing
+User asks question → system:
+Converts question → embedding
+Searches similar chunks in Qdrant
+
+Step 7: Retrieval
+
+Step 8: LLM Response Generation
+Using:
+Groq
+Input to LLM:
+Context (retrieved chunks) + Question
+Output:
+Final answer grounded in video content
+
+Step 9: Display Answer
+Using:
+Streamlit
+Shows:
+user message
+bot response
+
+
+FLOW 
+
+User Input (YouTube URL)
+        ↓
+Transcript Loader
+        ↓
+Text Splitter
+        ↓
+Embeddings
+        ↓
+Qdrant Vector DB
+        ↓
+User Question
+        ↓
+Similarity Search
+        ↓
+LLM (Groq)
+        ↓
+Final Answer (UI)
