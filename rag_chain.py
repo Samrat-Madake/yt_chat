@@ -63,10 +63,9 @@ def create_rag_chain(retriever):
     # ✅ 3. Final Standard LCEL Chain
     rag_chain = (
         RunnablePassthrough.assign(context=retrieve_context)
-        | qa_prompt
-        | llm
-        | StrOutputParser()
-        | format_output
+        | qa_prompt | llm  | StrOutputParser()  | format_output
     )
+
+    # rag_chain.get_graph().print_ascii()
 
     return rag_chain

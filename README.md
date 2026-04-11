@@ -1,4 +1,4 @@
-<div align="center">
+ <div align="center">
   <h1>▶️ YouTube RAG AI Chatbot</h1>
   <p><i>An advanced, memory-aware Retrieval-Augmented Generation (RAG) agent that lets you "chat" with any YouTube video.</i></p>
   
@@ -53,6 +53,42 @@ graph TD
 ```
 
 ---
+
+## RAG Pipeline 
+
+flowchart TD
+
+    A[Parallel<context>Input]
+
+    B[ChatPromptTemplate]
+    C[ChatGroq]
+    D[StrOutputParser]
+    E[Passthrough]
+
+    F[Parallel<context>Output]
+
+    G[ChatPromptTemplate]
+    H[ChatGroq]
+    I[StrOutputParser]
+    J[format_output]
+    K[format_output_output]
+
+    %% First stage
+    A --> B
+    B --> C
+    C --> D
+
+    A --> E
+
+    D --> F
+    E --> F
+
+    %% Second stage
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
 
 ## 🛠️ Technology Stack
 
